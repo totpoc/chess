@@ -14,15 +14,15 @@ int getCorrectInput()
     return inputNumber;
 }
 
-void drawField(char moves[])
+void drawField(char *moves)
 {
-    cout<<"########"<< endl;
-    cout<<"##" << moves[0] << "#" << moves[1] << "##" << endl;
-    cout<<"#" << moves[2] << "###" << moves[3] << "#" << endl;
-    cout<<"###?####"<< endl;
-    cout<<"#" << moves[4] << "###" << moves[5] << "#" << endl;
-    cout<<"##" << moves[6] << "#" << moves[7] << "##" << endl;
-    cout<<"########"<< endl;
+    cout << endl;
+    cout <<"   " << moves[0] << "   " << moves[1] << "  " << endl;
+    cout <<" " << moves[2] << "       " << moves[3] << " " << endl;
+    cout <<"     ?   "<< endl;
+    cout <<" " << moves[4] << "       " << moves[5] << " " << endl;
+    cout <<"   " << moves[6] << "   " << moves[7] << "  " << endl;
+    cout << endl;
 }
 
 int main()
@@ -31,6 +31,7 @@ int main()
 
     int fieldSizeX, fieldSizeY, posHorseX, posHorseY;
     int16_t numberOfTests, i, k;
+
     char possibleMoves[8];
     string cellColor;
 
@@ -60,7 +61,7 @@ int main()
         for (k = 0; k<8;k++)
             possibleMoves[k] = 'x';
         
-
+        cout << endl;
 
         if (posHorseX + 2 <= fieldSizeX) // >
         {
