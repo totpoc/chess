@@ -15,7 +15,7 @@ int getCorrectInput()
 }
 
 void drawField(char *moves)
-{
+{   
     cout << endl;
     cout <<"   " << moves[0] << "   " << moves[1] << "  " << endl;
     cout <<" " << moves[2] << "       " << moves[3] << " " << endl;
@@ -30,7 +30,7 @@ int main()
     setlocale(LC_ALL, "Rus");
 
     int fieldSizeX, fieldSizeY, posHorseX, posHorseY;
-    int16_t numberOfTests, i, k;
+    int16_t numberOfTests, numberOfMoves, i, k;
 
     char possibleMoves[8];
     string cellColor;
@@ -63,15 +63,19 @@ int main()
         
         cout << endl;
 
+        numberOfMoves = 0;
+
         if (posHorseX + 2 <= fieldSizeX) // >
         {
             if (posHorseY + 1 <= fieldSizeY){
                 cout << cellColor << posHorseX + 2 << ":" << posHorseY + 1 << endl;
                 possibleMoves[3] = 'v';
+                numberOfMoves++;
             }
             if (posHorseY - 1 >= 1){
                 cout << cellColor << posHorseX + 2 << ":" << posHorseY - 1 << endl;
                 possibleMoves[5] = 'v';
+                numberOfMoves++;
             }
         }
         if (posHorseX - 2 >= 1) // <
@@ -79,10 +83,12 @@ int main()
             if (posHorseY + 1 <= fieldSizeY){
                 cout << cellColor << posHorseX - 2 << ":" << posHorseY + 1 << endl;
                 possibleMoves[2] = 'v';
+                numberOfMoves++;
             }
             if (posHorseY - 1 >= 1){
                 cout << cellColor << posHorseX - 2 << ":" << posHorseY - 1 << endl;
                 possibleMoves[4] = 'v';
+                numberOfMoves++;
             }
         }
         if (posHorseY + 2 <= fieldSizeY) // ^
@@ -90,10 +96,12 @@ int main()
             if (posHorseX + 1 <= fieldSizeX) {
                 cout << cellColor << posHorseX + 1 << ":" << posHorseY + 2 << endl;
                 possibleMoves[1] = 'v';
+                numberOfMoves++;
             }
             if (posHorseX - 1 >= 1) {
                 cout << cellColor << posHorseX - 1 << ":" << posHorseY + 2 << endl;
                 possibleMoves[0] = 'v';
+                numberOfMoves++;
             }
         }
         if (posHorseY - 2 >= 1) // v
@@ -101,12 +109,15 @@ int main()
             if (posHorseX + 1 <= fieldSizeX){
                 cout << cellColor << posHorseX + 1 << ":" << posHorseY - 2 << endl;
                 possibleMoves[7] = 'v';
+                numberOfMoves++;
             }
             if (posHorseX - 1 >= 1){
                 cout << cellColor << posHorseX - 1 << ":" << posHorseY - 2 << endl;
                 possibleMoves[6] = 'v';
+                numberOfMoves++;
             }
         }
+        cout << endl << "Количество возможных ходов:" << numberOfMoves << endl;
         drawField(possibleMoves);
 
     }
