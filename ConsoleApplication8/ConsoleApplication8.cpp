@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <Windows.h>
 
 using namespace std;
 
@@ -14,16 +15,39 @@ int getCorrectInput()
     return inputNumber;
 }
 
-void drawField(char *moves)
-{   
-    cout << endl;
-    cout <<"   " << moves[0] << "   " << moves[1] << "  " << endl;
-    cout <<" " << moves[2] << "       " << moves[3] << " " << endl;
-    cout <<"     ?   "<< endl;
-    cout <<" " << moves[4] << "       " << moves[5] << " " << endl;
-    cout <<"   " << moves[6] << "   " << moves[7] << "  " << endl;
-    cout << endl;
+void setColor(char inputMoves) {
+    int bg = 0;
+    int text = 0;
+
+    if (inputMoves =='v')
+        text = 2;
+    if (inputMoves == 'x')
+        text = 4;
+    if (inputMoves == '?')
+        text = 7;
+    
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hStdOut, (WORD)((bg << 4) | text));
+
+    cout << inputMoves;
 }
+
+void drawField(char* moves)
+{
+    cout << endl;
+    cout << "   "; setColor(moves[0]);  cout << "   ";  setColor(moves[1]); cout << "  " << endl;
+    cout << " "; setColor(moves[2]); cout << "       "; setColor(moves[3]); cout << " " << endl;
+    cout << "     "; setColor('?'); cout << endl;
+    cout << " "; setColor(moves[4]); cout << "       "; setColor(moves[5]);cout << " " << endl;
+    cout << "   "; setColor(moves[6]); cout << "   "; setColor(moves[7]);cout << "  " << endl;
+    cout << endl;
+
+
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hStdOut, (WORD)((0 << 4) | 7));
+    
+}
+
 
 int main()
 {
@@ -58,8 +82,9 @@ int main()
         else
             cellColor = "Черная ";
 
-        for (k = 0; k<8;k++)
-            possibleMoves[k] = 'x';
+        for (k = 0; k < 8; k++)
+           possibleMoves[k] = 'x';
+       
         
         cout << endl;
 
